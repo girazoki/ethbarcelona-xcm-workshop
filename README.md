@@ -23,5 +23,61 @@ https://moonbeam-swap.netlify.app/#/swap
 We will use Remix for our interactions.
 - Open Remix and add ERC20.sol and Xtokens.sol interfaces to the contracts and compile them.
 - Inject web3 provider through metamask and load ERC20 at the xcDOT & Balances address
+- Check your balance by clicking balanceOf
+- Transfer to another account by clicking transfer
+- Check your transaction in moonscan https://moonbase.moonscan.io/
 
 ## Cross-transfering your tokens through precompiles
+We will do two transfers:
+- Transfer xcDOT to the relay
+- Transfer DEV to another parachain
+
+### Transfering xcDOT to the relay
+We will be using the **transfer** function from the Xtokens precompile. This one asks for the following parameters:
+
+    /** Transfer a token through XCM based on its currencyId
+     *
+     * @dev The token transfer burns/transfers the corresponding amount before sending
+     * @param currency_address The ERC20 address of the currency we want to transfer
+     * @param amount The amount of tokens we want to transfer
+     * @param destination The Multilocation to which we want to send the tokens
+     * @param weight The weight we want to buy in the destination chain
+     * Selector: b9f813ff
+     */
+    function transfer(
+        address currency_address,
+        uint256 amount,
+        Multilocation memory destination,
+        uint64 weight
+    ) external;
+
+Here we will use the following parameters:
+- **currency_address**: 0xFFFFFFFF1FCACBD218EDC0EBA20FC2308C778080 (since we are sending xcDOT)
+- **amount**: 1000000000000 (1 xcDOT has 12 decimals)
+- **destination**: [1, ["0x019c6af76cd6513e44e421ab8dc8f9d86e102200eb2e55cbc41a2d5ce214ee254f00"]]
+- **weight**: 4000000000
+
+### Transfering DEV to Acala DEV parachain
+We will be using the **transfer** function from the Xtokens precompile. This one asks for the following parameters:
+
+    /** Transfer a token through XCM based on its currencyId
+     *
+     * @dev The token transfer burns/transfers the corresponding amount before sending
+     * @param currency_address The ERC20 address of the currency we want to transfer
+     * @param amount The amount of tokens we want to transfer
+     * @param destination The Multilocation to which we want to send the tokens
+     * @param weight The weight we want to buy in the destination chain
+     * Selector: b9f813ff
+     */
+    function transfer(
+        address currency_address,
+        uint256 amount,
+        Multilocation memory destination,
+        uint64 weight
+    ) external;
+
+Here we will use the following parameters:
+- **currency_address**: 0x0000000000000000000000000000000000000802 (since we are sending DEV)
+- **amount**: 1000000000000000000 (1 DEV has 18 decimals)
+- **destination**: [1, ["0x00000007d0", "0x019c6af76cd6513e44e421ab8dc8f9d86e102200eb2e55cbc41a2d5ce214ee254f00"]]
+- **weight**: 4000000000

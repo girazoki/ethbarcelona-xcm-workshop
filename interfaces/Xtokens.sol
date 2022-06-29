@@ -82,7 +82,7 @@ interface Xtokens {
      * Currently only Concrete Fungible assets
      * @param amount The amount of tokens we want to transfer
      * @param destination The Multilocation to which we want to send the tokens
-     * @param destination The weight we want to buy in the destination chain
+     * @param weight The weight we want to buy in the destination chain
      * Selector: 89a570fc
      */
     function transfer_multiasset_with_fee(
