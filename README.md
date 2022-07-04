@@ -99,6 +99,10 @@ This time the multilocation to which we want to send the tokens is:
         }]
     }
 
+In alphanet, Acala has para_id 2000 and should be represented by 4 bytes, so 
+
+    2000 -> 0x000007d0
+
 Here we will use the following parameters:
 - **currency_address**: 0x0000000000000000000000000000000000000802 (since we are sending DEV)
 - **amount**: 1000000000000000000 (1 DEV has 18 decimals)
