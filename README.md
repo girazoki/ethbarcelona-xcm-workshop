@@ -13,7 +13,7 @@ https://moonbeam-swap.netlify.app/#/swap
 - chainId: 1287
 
 ### Useful addresses to remember:
-- xcDOT address: 0xFFFFFFFF1FCACBD218EDC0EBA20FC2308C778080
+- xcUnit address: 0xFFFFFFFF1FCACBD218EDC0EBA20FC2308C778080
 - Balances precompile address: 0x0000000000000000000000000000000000000802
 - Xtokens precompile address: 0x0000000000000000000000000000000000000804
 
@@ -22,17 +22,17 @@ https://moonbeam-swap.netlify.app/#/swap
 ## Checking & transfering your tokens through precompiles
 We will use Remix for our interactions.
 - Open Remix and add ERC20.sol and Xtokens.sol interfaces to the contracts and compile them.
-- Inject web3 provider through metamask and load ERC20 at the xcDOT & Balances address
+- Inject web3 provider through metamask and load ERC20 at the xcUnit & Balances address
 - Check your balance by clicking balanceOf
 - Transfer to another account by clicking transfer
 - Check your transaction in moonscan https://moonbase.moonscan.io/
 
 ## Cross-transfering your tokens through precompiles
 We will do two transfers:
-- Transfer xcDOT to the relay
+- Transfer xcUnit to the relay
 - Transfer DEV to another parachain
 
-### Transfering xcDOT to the relay
+### Transfering xcUnit to the relay
 We will be using the **transfer** function from the Xtokens precompile. This one asks for the following parameters:
 
     /** Transfer a token through XCM based on its currencyId
@@ -51,9 +51,18 @@ We will be using the **transfer** function from the Xtokens precompile. This one
         uint64 weight
     ) external;
 
+Lets say we want to send the tokens to a mutilocation that looks like this:
+
+    MultiLocation {
+        parents: 1
+        interior: X1(AccountId32 {
+            network: Any,
+            account: 0x9c6af76cd6513e44e421ab8dc8f9d86e102200eb2e55cbc41a2d5ce214ee254
+        })
+    }
 Here we will use the following parameters:
-- **currency_address**: 0xFFFFFFFF1FCACBD218EDC0EBA20FC2308C778080 (since we are sending xcDOT)
-- **amount**: 1000000000000 (1 xcDOT has 12 decimals)
+- **currency_address**: 0xFFFFFFFF1FCACBD218EDC0EBA20FC2308C778080 (since we are sending xcUnit)
+- **amount**: 1000000000000 (1 xcUnit has 12 decimals)
 - **destination**: [1, ["0x019c6af76cd6513e44e421ab8dc8f9d86e102200eb2e55cbc41a2d5ce214ee254f00"]]
 - **weight**: 4000000000
 
@@ -75,6 +84,20 @@ We will be using the **transfer** function from the Xtokens precompile. This one
         Multilocation memory destination,
         uint64 weight
     ) external;
+
+
+This time the multilocation to which we want to send the tokens is:
+
+
+    MultiLocation {
+        parents: 1
+        interior: X2[
+            Parachain(acala_para_id),
+            AccountId32 {
+            network: Any,
+            account: 0x9c6af76cd6513e44e421ab8dc8f9d86e102200eb2e55cbc41a2d5ce214ee254
+        }]
+    }
 
 Here we will use the following parameters:
 - **currency_address**: 0x0000000000000000000000000000000000000802 (since we are sending DEV)
