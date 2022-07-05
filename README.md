@@ -1,5 +1,9 @@
 # ethbarcelona-xcm-workshop
 
+## PolkadotJS/apps explorers
+- Alphanet: https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer
+- Relay:https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/explorer
+
 ## Pre-requisites:
 
 ### Obtain alphanet tokens via faucet
