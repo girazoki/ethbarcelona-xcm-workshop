@@ -1,8 +1,8 @@
 # ethbarcelona-xcm-workshop
 
 ## PolkadotJS/apps explorers
-- Alphanet: https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer
-- Relay:https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/explorer
+- [Alphanet](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer)
+- [Relay](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/explorer)
 
 ## Pre-requisites:
 
@@ -29,7 +29,7 @@ We will use Remix for our interactions.
 - Inject web3 provider through metamask and load ERC20 at the xcUnit & Balances address
 - Check your balance by clicking balanceOf
 - Transfer to another account by clicking transfer
-- Check your transaction in moonscan https://moonbase.moonscan.io/
+- Check your transaction in [moonscan](https://moonbase.moonscan.io/)
 
 ## Cross-transfering your tokens through precompiles
 We will do two transfers:
